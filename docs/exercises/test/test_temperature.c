@@ -41,10 +41,14 @@ void test_read_celsius_converts_raw_with_offset(void)
 /* ----- TODO EX3.1 ------------------------------------------------------- *
  * Arrange the mock so the sensor returns 40, then assert the result is 0.
  */
+
 void test_read_celsius_at_zero_degrees(void)
 {
-    /* YOUR CODE HERE */
-    TEST_IGNORE_MESSAGE("Remove this line and write the test");
+    i2c_read_raw_ExpectAndReturn(TEMPERATURE_REG, 40);
+
+    int celsius = temperature_read_celsius();
+
+    TEST_ASSERT_EQUAL_INT(0, celsius);
 }
 
 /* ----- TODO EX3.2 ------------------------------------------------------- *
@@ -53,6 +57,9 @@ void test_read_celsius_at_zero_degrees(void)
  */
 void test_read_celsius_below_zero(void)
 {
-    /* YOUR CODE HERE */
-    TEST_IGNORE_MESSAGE("Remove this line and write the test");
+    i2c_read_raw_ExpectAndReturn(TEMPERATURE_REG, 10);
+
+    int celsius = temperature_read_celsius();
+
+    TEST_ASSERT_EQUAL_INT(-30, celsius);
 }

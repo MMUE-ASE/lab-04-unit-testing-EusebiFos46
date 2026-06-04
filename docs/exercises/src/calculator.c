@@ -31,9 +31,22 @@ int calc_multiply(int a, int b)
  *
  * Run again after your change:  ceedling test:test_clamp   ← expect GREEN
  */
+// int calc_clamp(int value, int low, int high)
+// {
+//     (void)low;
+//     (void)high;
+//     return value; /* placeholder — replace with the real logic */
+// }
+
 int calc_clamp(int value, int low, int high)
 {
-    (void)low;
-    (void)high;
-    return value; /* placeholder — replace with the real logic */
+    if (value < low) {
+        return low;
+    }
+
+    if (value > high) {
+        return high;
+    }
+
+    return value;
 }
