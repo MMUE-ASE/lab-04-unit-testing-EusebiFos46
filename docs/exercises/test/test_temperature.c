@@ -55,11 +55,11 @@ void test_read_celsius_at_zero_degrees(void)
  * A reading of 10 means -30 C. Arrange the mock to return 10 and assert -30.
  * Note how you never touch real hardware — the mock fully stands in for it.
  */
-void test_read_celsius_at_zero_degrees(void)
+void test_read_celsius_below_zero(void)
 {
-    i2c_read_raw_ExpectAndReturn(TEMPERATURE_REG, 40);
+    i2c_read_raw_ExpectAndReturn(TEMPERATURE_REG, 10);
 
     int celsius = temperature_read_celsius();
 
-    TEST_ASSERT_EQUAL_INT(0, celsius);
+    TEST_ASSERT_EQUAL_INT(-30, celsius);
 }
